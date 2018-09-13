@@ -120,7 +120,7 @@ Puzzle *readPuzzleFromFS(char *filepath, Bool fix) {
 		return 0;
 	}
 
-	assert(fscanf(fp, "%d %d", &m, &n) == 2);
+	assert(fscanf(fp, "%d %d", &n, &m) == 2);
 	res = createPuzzle((unsigned int) n, (unsigned int) m);
 	dim = n * m;
 
