@@ -6,7 +6,6 @@
 #include "Strings.h"
 #include "utils/MemAlloc.h"
 
-#define gurobiController 0
 #define generateMaxTrials 1000
 
 typedef struct {
@@ -44,19 +43,15 @@ static PuzzleState *createPuzzleState(unsigned int i, unsigned int j, Puzzle *pu
 /**
  * This method clones a puzzle, and fixes all the non-empty cells in the clone
  */
-static Puzzle* copyPuzzle(Puzzle* puzzle)
-{
+static Puzzle* copyPuzzle(Puzzle* puzzle) {
 	unsigned int i, j;
 	unsigned int size = puzzle->m * puzzle->n;
 	Puzzle* localP = createPuzzle(puzzle->n, puzzle->m);
 	localP->zeroCnt = puzzle->zeroCnt;
-	for (i = 0; i < size; i++)
-	{
-		for (j = 0; j < size; j++)
-		{
+	for (i = 0; i < size; i++) {
+		for (j = 0; j < size; j++) {
 			localP->board[i][j][0] = puzzle->board[i][j][0];
-			if (getBoardValue(puzzle, i, j))
-			{
+			if (getBoardValue(puzzle, i, j)) {
 				fixCell(localP, i, j);
 			}
 		}
@@ -89,8 +84,6 @@ Bool isPuzzleLegal(Puzzle *p) {
 }
 
 static Bool ILPSolver(Puzzle *p) {
-#if gurobiController
-
 	GRBenv   *env = 0;
 	GRBmodel *model = 0;
 	unsigned int dim = p->n * p->m;
@@ -242,11 +235,6 @@ QUIT:
 	memFree(vtype);
 	memFree(sol);
 	return ret;
-
-#else
-	if (p) {}
-	return TRUE;
-#endif
 }
 
 Bool isPuzzleValid(Puzzle *p) {
@@ -357,9 +345,10 @@ unsigned int calcCellHint(Puzzle *p, unsigned int x, unsigned int y) {
  * ∀i,j: 0 <= i,j <= p->n * p->m → getBoardValue(p, i, j) == 0
  */
 static void clearBoard(Puzzle *p) {
-	unsigned int i, j;
-	for (i = 0; i < p->n; i++) {
-		for (j = 0; j < p->m; j++) {
+	unsigned int i, j, dim;
+	dim = p->n * p->m;
+	for (i = 0; i < dim; i++) {
+		for (j = 0; j < dim; j++) {
 			setBoardValue(p, i, j, 0);
 		}
 	}
@@ -484,7 +473,7 @@ static Bool fillRndVals(Puzzle *p, unsigned int x) {
 static void clearBut(Puzzle *p, unsigned int y) {
 	unsigned int dim = p->n * p->m, dim2 = dim * dim, i, j, count;
 
-	if (y == 0) {
+	if (y == dim2) {
 		return;
 	}
 
@@ -501,7 +490,7 @@ static void clearBut(Puzzle *p, unsigned int y) {
 Bool generatePuzzle(Puzzle *p, unsigned int x, unsigned int y) {
 	unsigned int t;
 
-	if (y == p->n * p->n * p->m * p->m) {
+	if (y == 0) {
 		return TRUE;
 	}
 
@@ -795,5 +784,4 @@ Bool isCellLegal(Puzzle *p, unsigned int x, unsigned int y) {
 	return TRUE;
 }
 
-#undef gurobiController
 #undef generateMaxTrials
