@@ -69,7 +69,7 @@ static char *genFileContent(Puzzle *puzzle) {
 	char *memAllocN(res, char, calcFileContentLength(puzzle) + 1);
 	p = res;
 
-	p = res + sprintf(res, "%d %d\n", puzzle->m, puzzle->n);
+	p = res + sprintf(res, "%d %d\n", puzzle->n, puzzle->m);
 
 	for (i = 0; i < dim; i++) {
 		for (j = 0; j < dim; j++) {
