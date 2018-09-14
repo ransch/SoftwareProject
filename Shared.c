@@ -8,7 +8,6 @@ extern SharedBundle bundle;
 
 void initBundle() {
 	bundle.puzzle = 0;
-	bundle.markErrorsFlag = 1;
 	bundle.activity = createActivity();
 }
 

@@ -19,7 +19,8 @@ typedef struct {
 } SharedBundle;
 
 /**
- * This method initializes the extern "bundle" variable.
+ * This method initializes the extern "bundle" variable,
+ * but doesn't affect the markErrorsFlag variable.
  */
 void initBundle();
 

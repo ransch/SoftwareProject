@@ -11,11 +11,14 @@
  */
 static GameMode currentMode;
 
+SharedBundle bundle;
+
 void mainLoop() {
 	ParserFeedback c;
 	currentMode = gameModeInit;
 
 	initBundle();
+	bundle.markErrorsFlag = 1;
 	initParser();
 
 	while (1) {
