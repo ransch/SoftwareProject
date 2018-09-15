@@ -163,30 +163,34 @@ ParserFeedback exitOp(LinkedList* args) {
 
 static ParserFeedback solveOp(LinkedList* args) {
 	ParserFeedback ret;
+	Puzzle *p;
 	destroyBundle();
 	initBundle();
 
-	bundle.puzzle = readPuzzleFromFS((char*) args->first->data, TRUE);
-	if (bundle.puzzle == 0) {
+	p = readPuzzleFromFS((char*) args->first->data, TRUE);
+	if (p == 0) {
 		printf("%s\n", errMsgIOExistOpeningFailed);
 		returnGameMode(ret, getCurrentGameMode());
 	}
 
+	bundle.puzzle = p;
 	printBoard(bundle.puzzle, bundle.markErrorsFlag);
 	returnGameMode(ret, gameModeSolve);
 }
 
 static ParserFeedback editOp(LinkedList* args) {
 	ParserFeedback ret;
+	Puzzle *p;
 	destroyBundle();
 	initBundle();
 
 	if (args->first->data) {
-		bundle.puzzle = readPuzzleFromFS((char*) args->first->data, FALSE);
-		if (bundle.puzzle == 0) {
+		p = readPuzzleFromFS((char*) args->first->data, FALSE);
+		if (p == 0) {
 			printf("%s\n", errMsgIOOpeningFailed);
 			returnGameMode(ret, getCurrentGameMode());
 		}
+		bundle.puzzle = p;
 	} else {
 		bundle.puzzle = createPuzzle(defaultN, defaultM);
 	}
