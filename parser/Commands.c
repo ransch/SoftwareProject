@@ -27,6 +27,8 @@ SharedBundle bundle;
 						} \
 					}
 
+#define printBoardReg printBoard(bundle.puzzle, bundle.markErrorsFlag || getCurrentGameMode() == gameModeEdit)
+
 /**
  * The operation of the "set" command.
  */
@@ -69,7 +71,7 @@ static ParserFeedback setOp(LinkedList* args) {
 	applyActivitySingle(bundle.puzzle, move);
 	addMove(bundle.activity, move);
 
-	printBoard(bundle.puzzle, bundle.markErrorsFlag);
+	printBoardReg;
 
 	if (getCurrentGameMode() == gameModeSolve) {
 		checkGameEnd;
@@ -216,7 +218,7 @@ static ParserFeedback printBoardOp(LinkedList* args) {
 
 	if (args) {
 	}
-	printBoard(bundle.puzzle, bundle.markErrorsFlag);
+	printBoardReg;
 
 	returnGameMode(ret, getCurrentGameMode());
 }
@@ -284,7 +286,7 @@ static ParserFeedback generateOp(LinkedList* args) {
 		if (generatePuzzle(bundle.puzzle, (unsigned int) x, (unsigned int) y)) {
 			action = buildAction(bundle.puzzle);
 			addAction(bundle.activity, action);
-			printBoard(bundle.puzzle, bundle.markErrorsFlag);
+			printBoardReg;
 		} else {
 			printf("%s\n", errMsgGenFailed);
 		}
@@ -333,7 +335,7 @@ static ParserFeedback undoOp(LinkedList* args) {
 		currentAction = getCurrentAction(bundle.activity);
 		regressActivity(bundle.activity);
 		revertActivity(bundle.puzzle, currentAction);
-		printBoard(bundle.puzzle, bundle.markErrorsFlag);
+		printBoardReg;
 		forEachListElem(currentAction, undoPrintActionElem);
 	}
 
@@ -352,7 +354,7 @@ static ParserFeedback redoOp(LinkedList* args) {
 		progressActivity(bundle.activity);
 		currentAction = getCurrentAction(bundle.activity);
 		applyActivity(bundle.puzzle, currentAction);
-		printBoard(bundle.puzzle, bundle.markErrorsFlag);
+		printBoardReg;
 		forEachListElem(currentAction, redoPrintActionElem);
 	}
 
@@ -465,14 +467,14 @@ static ParserFeedback autofillOp(LinkedList* args) {
 
 	if (!c) {
 		destroyList(action);
-		printBoard(bundle.puzzle, bundle.markErrorsFlag);
+		printBoardReg;
 		finish(getCurrentGameMode());
 	}
 
 	addAction(bundle.activity, action);
 	applyActivity(bundle.puzzle, action);
 
-	printBoard(bundle.puzzle, bundle.markErrorsFlag);
+	printBoardReg;
 
 	checkGameEnd;
 

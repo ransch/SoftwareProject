@@ -185,7 +185,7 @@ void printBoard(Puzzle *puzzle, Bool markErrorsFlag) {
 					if (isCellFixed(puzzle, x, y)) {
 						printf(".");
 					} else {
-						if ((getCurrentGameMode() == gameModeEdit || markErrorsFlag) && !isCellLegal(puzzle, x, y)) {
+						if (markErrorsFlag && !isCellLegal(puzzle, x, y)) {
 							printf("*");
 						} else {
 							printf(" ");
