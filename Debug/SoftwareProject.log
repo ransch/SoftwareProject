@@ -1,5 +1,28 @@
-﻿  Commands.c
+﻿  exhBacktr.c
+  ILPSolver.c
+  SudokuAlgs.c
+  Activity.c
+  IO.c
+  main.c
+  MainAux.c
+  Commands.c
   Parser.c
+  Puzzle.c
+  Stack.c
+  EnumSubset.c
+  DoublyLinkedList.c
+  Shared.c
   Strings.c
   Generating Code...
-  SoftwareProject.vcxproj -> C:\Users\רן\source\repos\SoftwareProject\Debug\SoftwareProject.exe
+ILPSolver.obj : error LNK2019: unresolved external symbol _GRBgetintattr@12 referenced in function _ILPSolver
+ILPSolver.obj : error LNK2019: unresolved external symbol _GRBgetdblattrarray@20 referenced in function _ILPSolver
+ILPSolver.obj : error LNK2019: unresolved external symbol _GRBoptimize@4 referenced in function _ILPSolver
+ILPSolver.obj : error LNK2019: unresolved external symbol _GRBwrite@8 referenced in function _ILPSolver
+ILPSolver.obj : error LNK2019: unresolved external symbol _GRBnewmodel@36 referenced in function _ILPSolver
+ILPSolver.obj : error LNK2019: unresolved external symbol _GRBaddconstr@32 referenced in function _ILPSolver
+ILPSolver.obj : error LNK2019: unresolved external symbol _GRBfreemodel@4 referenced in function _ILPSolver
+ILPSolver.obj : error LNK2019: unresolved external symbol _GRBsetintparam@12 referenced in function _ILPSolver
+ILPSolver.obj : error LNK2019: unresolved external symbol _GRBloadenv@8 referenced in function _ILPSolver
+ILPSolver.obj : error LNK2019: unresolved external symbol _GRBfreeenv@4 referenced in function _ILPSolver
+ILPSolver.obj : error LNK2019: unresolved external symbol _GRBgeterrormsg@4 referenced in function _ILPSolver
+C:\Users\רן\source\repos\SoftwareProject\Debug\SoftwareProject.exe : fatal error LNK1120: 11 unresolved externals

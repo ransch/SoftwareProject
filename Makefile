@@ -1,6 +1,7 @@
-OBJS = main.o MainAux.o Shared.o SudokuAlgs.o IO.o
+OBJS = main.o MainAux.o Shared.o IO.o
 OBJS += dataStructures/Activity.o dataStructures/Puzzle.o
 OBJS += parser/Commands.o parser/Parser.o
+OBJS += algs/SudokuAlgs.o algs/exhBacktr.o algs/ILPSolver.o
 OBJS += utils/EnumSubset.o utils/Strings.o
 OBJS += utils/dataStructures/DoublyLinkedList.o utils/dataStructures/Stack.o
 
@@ -43,23 +44,29 @@ MainAux.o: MainAux.h Shared.h Strings.h dataStructures/Puzzle.h parser/Parser.h
 Shared.o: Shared.h
 	$(CC) $(COMP_FLAG) $*.c -c
 
-SudokuAlgs.o: SudokuAlgs.h
-	$(CC) $(COMP_FLAG) $(GUROBI_COMP) $*.c -c
-
 IO.o: IO.h utils/MemAlloc.h
 	$(CC) $(COMP_FLAG) $*.c -c
 
 dataStructures/Activity.o: dataStructures/Activity.h utils/MemAlloc.h
 	$(CC) -o $@ -c $(COMP_FLAG) $(basename $@).c
 
-dataStructures/Puzzle.o: dataStructures/Puzzle.h utils/MemAlloc.h MainAux.h SudokuAlgs.h
+dataStructures/Puzzle.o: dataStructures/Puzzle.h utils/MemAlloc.h MainAux.h algs/SudokuAlgs.h
 	$(CC) -o $@ -c $(COMP_FLAG) $(basename $@).c
 
-parser/Commands.o: parser/Commands.h IO.h Shared.h Strings.h SudokuAlgs.h dataStructures/Activity.h dataStructures/Puzzle.h utils/MemAlloc.h utils/Strings.h parser/Parser.h
+parser/Commands.o: parser/Commands.h IO.h Shared.h Strings.h algs/SudokuAlgs.h dataStructures/Activity.h dataStructures/Puzzle.h utils/MemAlloc.h utils/Strings.h parser/Parser.h
 	$(CC) -o $@ -c $(COMP_FLAG) $(basename $@).c
 
 parser/Parser.o: parser/Parser.h parser/Commands.h utils/MemAlloc.h utils/Strings.h
 	$(CC) -o $@ -c $(COMP_FLAG) $(basename $@).c
+
+algs/SudokuAlgs.o: algs/SudokuAlgs.h algs/exhBacktr.h algs/ILPSolver.h utils/MemAlloc.h
+	$(CC) -o $@ -c $(COMP_FLAG) $(basename $@).c
+
+algs/exhBacktr.o: algs/exhBacktr.h algs/SudokuAlgs.h utils/dataStructures/Stack.h utils/MemAlloc.h
+	$(CC) -o $@ -c $(COMP_FLAG) $(basename $@).c
+
+algs/ILPSolver.o: algs/ILPSolver.h Strings.h utils/MemAlloc.h
+	$(CC) -o $@ -c $(COMP_FLAG) $(GUROBI_COMP) $(basename $@).c
 
 utils/EnumSubset.o: utils/EnumSubset.h utils/MemAlloc.h
 	$(CC) -o $@ -c $(COMP_FLAG) $(basename $@).c

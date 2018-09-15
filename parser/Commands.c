@@ -2,7 +2,7 @@
 #include "../IO.h"
 #include "../Shared.h"
 #include "../Strings.h"
-#include "../SudokuAlgs.h"
+#include "../algs/SudokuAlgs.h"
 #include "../dataStructures/Activity.h"
 #include "../dataStructures/Puzzle.h"
 #include "../utils/MemAlloc.h"
@@ -170,7 +170,7 @@ static ParserFeedback solveOp(LinkedList* args) {
 		returnGameMode(ret, getCurrentGameMode());
 	}
 
-	printBoard(bundle.puzzle, getCurrentGameMode());
+	printBoard(bundle.puzzle, bundle.markErrorsFlag);
 	returnGameMode(ret, gameModeSolve);
 }
 

@@ -4,7 +4,7 @@
 #include <assert.h>
 #include "../utils/MemAlloc.h"
 #include "../MainAux.h"
-#include "../SudokuAlgs.h"
+#include "../algs/SudokuAlgs.h"
 
 /**
  * This method dynamically allocates a n*n*2 zeros tensor.

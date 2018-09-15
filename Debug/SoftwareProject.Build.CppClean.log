@@ -5,7 +5,6 @@ c:\users\רן\source\repos\softwareproject\softwareproject\debug\shared.obj
 c:\users\רן\source\repos\softwareproject\softwareproject\debug\doublylinkedlist.obj
 c:\users\רן\source\repos\softwareproject\softwareproject\debug\enumsubset.obj
 c:\users\רן\source\repos\softwareproject\softwareproject\debug\stack.obj
-c:\users\רן\source\repos\softwareproject\softwareproject\debug\sudokualgs.obj
 c:\users\רן\source\repos\softwareproject\softwareproject\debug\puzzle.obj
 c:\users\רן\source\repos\softwareproject\softwareproject\debug\parser.obj
 c:\users\רן\source\repos\softwareproject\softwareproject\debug\commands.obj
@@ -13,6 +12,9 @@ c:\users\רן\source\repos\softwareproject\softwareproject\debug\mainaux.obj
 c:\users\רן\source\repos\softwareproject\softwareproject\debug\main.obj
 c:\users\רן\source\repos\softwareproject\softwareproject\debug\io.obj
 c:\users\רן\source\repos\softwareproject\softwareproject\debug\activity.obj
+c:\users\רן\source\repos\softwareproject\softwareproject\debug\sudokualgs.obj
+c:\users\רן\source\repos\softwareproject\softwareproject\debug\ilpsolver.obj
+c:\users\רן\source\repos\softwareproject\softwareproject\debug\exhbacktr.obj
 c:\users\רן\source\repos\softwareproject\debug\softwareproject.pdb
 c:\users\רן\source\repos\softwareproject\softwareproject\debug\softwareproject.tlog\cl.command.1.tlog
 c:\users\רן\source\repos\softwareproject\softwareproject\debug\softwareproject.tlog\cl.read.1.tlog
