@@ -32,8 +32,8 @@
 #define infoMsgSingleSolution "This is a good board!"
 #define infoMsgMultipleSolutions "The puzzle has more than 1 solution, try to edit it further"
 #define infoMsgBoardReset "Board reset"
-#define infoMsgUndo "Undo %d,%d: from %d to %d\n"
-#define infoMsgRedo "Redo %d,%d: from %d to %d\n"
+#define infoMsgUndo "Undo %d,%d: from %c to %c\n"
+#define infoMsgRedo "Redo %d,%d: from %c to %c\n"
 #define infoMsgErrSolution "Puzzle solution erroneous"
 #define infoMsgSuccessfulSolution "Puzzle solved successfully"
 
