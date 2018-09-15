@@ -1,4 +1,5 @@
 #include "SudokuAlgs.h"
+#include <assert.h>
 #include "exhBacktr.h"
 #include "ILPSolver.h"
 #include "../utils/MemAlloc.h"
@@ -311,9 +312,7 @@ static void clearBut(Puzzle *p, unsigned int y) {
 Bool generatePuzzle(Puzzle *p, unsigned int x, unsigned int y) {
 	unsigned int t;
 
-	if (y == 0) {
-		return TRUE;
-	}
+	assert(y > 0);
 
 	for (t = 0; t < generateMaxTrials; t++) {
 		if (!fillRndVals(p, x) || !ILPSolver(p)) {

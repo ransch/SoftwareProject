@@ -308,12 +308,16 @@ static ParserFeedback generateOp(LinkedList* args) {
 	} else if (!isEmpty(bundle.puzzle)) {
 		printf("%s\n", errMsgNonEmptyBoard);
 	} else {
-		if (generatePuzzle(bundle.puzzle, (unsigned int) x, (unsigned int) y)) {
-			action = buildAction(bundle.puzzle);
-			addAction(bundle.activity, action);
+		if (y == 0) {
 			printBoardReg;
 		} else {
-			printf("%s\n", errMsgGenFailed);
+			if (generatePuzzle(bundle.puzzle, (unsigned int) x, (unsigned int) y)) {
+				action = buildAction(bundle.puzzle);
+				addAction(bundle.activity, action);
+				printBoardReg;
+			} else {
+				printf("%s\n", errMsgGenFailed);
+			}
 		}
 	}
 
