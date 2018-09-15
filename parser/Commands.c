@@ -262,12 +262,37 @@ static LinkedList* buildAction(Puzzle* puzzle) {
 	return res;
 }
 
+/**
+ * This method counts the number of blank cells in [p].
+ *
+ * Parameters:
+ * Puzzle *p
+ *
+ * Preconditions:
+ * p != 0
+ *
+ * Returns:
+ * # {(x,y) | 0 <= x,y < p->n*p->m ∧ !getBoardValue(p, x, y)}
+ */
+static unsigned int countZeros(Puzzle *p) {
+	unsigned int i, j, dim = p->n * p->m, res = 0;
+	for (i = 0; i < dim; i++) {
+		for (j = 0; j < dim; j++) {
+			if (!getBoardValue(p, i, j)) {
+				res++;
+			}
+		}
+	}
+	return res;
+}
+
 static ParserFeedback generateOp(LinkedList* args) {
 	ParserFeedback ret;
 	int x, y;
 	const char *arg1, *arg2;
 	int dim = bundle.puzzle->n * bundle.puzzle->m;
 	int dim2 = dim * dim;
+	unsigned int blankCount = countZeros(bundle.puzzle);
 	LinkedList* action;
 	LinkedListElem* elem = args->first;
 
@@ -278,8 +303,8 @@ static ParserFeedback generateOp(LinkedList* args) {
 	x = isUInteger(arg1);
 	y = isUInteger(arg2);
 
-	if ((x == -1 || y == -1) || !(x >= 0 && y >= 0 && x <= dim2 && y <= dim2)) {
-		printf(errMsgNotInRange, dim);
+	if ((x == -1 || y == -1) || !(x >= 0 && y >= 0 && x <= blankCount && y <= dim2)) {
+		printf(errMsgNotInRange, blankCount);
 	} else if (!isEmpty(bundle.puzzle)) {
 		printf("%s\n", errMsgNonEmptyBoard);
 	} else {
