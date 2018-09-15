@@ -253,9 +253,9 @@ static LinkedList* buildAction(Puzzle* puzzle) {
 
 	for (i = 0; i < dim; i++) {
 		for (j = 0; j < dim; j++) {
-			appendElemToList(
-				res,
-				createListElem(createMove(i, j, getBoardValue(bundle.puzzle, i, j))));
+			if (getBoardValue(bundle.puzzle, i, j)) {
+				appendElemToList(res, createListElem(createMove(i, j, getBoardValue(bundle.puzzle, i, j))));
+			}
 		}
 	}
 
