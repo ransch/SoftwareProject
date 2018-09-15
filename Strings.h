@@ -4,6 +4,8 @@
  * This header file defines all the strings in the program.
  */
 
+#include <stdio.h>
+
 #define cmdNameSolve "solve"
 #define cmdNameEdit "edit"
 #define cmdNameMarkErrors "mark_errors"
@@ -32,8 +34,6 @@
 #define infoMsgSingleSolution "This is a good board!"
 #define infoMsgMultipleSolutions "The puzzle has more than 1 solution, try to edit it further"
 #define infoMsgBoardReset "Board reset"
-#define infoMsgUndo "Undo %d,%d: from %c to %c\n"
-#define infoMsgRedo "Redo %d,%d: from %c to %c\n"
 #define infoMsgErrSolution "Puzzle solution erroneous"
 #define infoMsgSuccessfulSolution "Puzzle solved successfully"
 
@@ -55,5 +55,8 @@
 #define errMsgCannotUndo "Error: no moves to undo"
 #define errMsgGurobi "Gurobi Error: %s\n"
 #define errMsgGurobiUnexpected "Gurobi Error: Optimization was stopped early"
+
+#define printInfoMsgUndo(x, y, prev, curr) printf("Undo %d,%d: from ",x,y); if (prev){ printf("%d",prev);}else{printf("_");} printf(" to "); if (curr){ printf("%d",curr);}else{printf("_");}printf("\n")
+#define printInfoMsgRedo(x, y, prev,curr) printf("Redo %d,%d: from ",x,y); if (prev){ printf("%d",prev);}else{printf("_");} printf(" to "); if (curr){ printf("%d",curr);}else{printf("_");} printf("\n")
 
 #endif

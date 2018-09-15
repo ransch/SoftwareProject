@@ -339,9 +339,7 @@ static ParserFeedback generateOp(LinkedList* args) {
 static void undoPrintActionElem(LinkedListElem* elem) {
 	Move* move = (Move*) elem->data;
 	unsigned int v = getBoardValue(bundle.puzzle, move->x, move->y);
-	char c1 = v + move->delta ? '0' + v + move->delta : '_';
-	char c2 = v ? '0' + v : '_';
-	printf(infoMsgUndo, move->y + 1, move->x + 1, c1, c2);
+	printInfoMsgUndo(move->y + 1, move->x + 1, v + move->delta, v);
 }
 
 /**
@@ -355,9 +353,7 @@ static void undoPrintActionElem(LinkedListElem* elem) {
 static void redoPrintActionElem(LinkedListElem* elem) {
 	Move* move = (Move*) elem->data;
 	unsigned int v = getBoardValue(bundle.puzzle, move->x, move->y);
-	char c1 = v - move->delta ? '0' + v - move->delta : '_';
-	char c2 = v ? '0' + v : '_';
-	printf(infoMsgRedo, move->y + 1, move->x + 1, c1, c2);
+	printInfoMsgRedo(move->y + 1, move->x + 1, v - move->delta, v);
 }
 
 static ParserFeedback undoOp(LinkedList* args) {
