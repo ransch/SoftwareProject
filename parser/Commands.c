@@ -337,8 +337,6 @@ static ParserFeedback undoOp(LinkedList* args) {
 		forEachListElem(currentAction, undoPrintActionElem);
 	}
 
-	checkGameEnd;
-
 	returnGameMode(ret, getCurrentGameMode());
 }
 
@@ -357,8 +355,6 @@ static ParserFeedback redoOp(LinkedList* args) {
 		printBoard(bundle.puzzle, bundle.markErrorsFlag);
 		forEachListElem(currentAction, redoPrintActionElem);
 	}
-
-	checkGameEnd;
 
 	returnGameMode(ret, getCurrentGameMode());
 }
