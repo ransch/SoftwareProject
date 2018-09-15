@@ -303,7 +303,7 @@ static ParserFeedback generateOp(LinkedList* args) {
 	x = isUInteger(arg1);
 	y = isUInteger(arg2);
 
-	if ((x == -1 || y == -1) || !(x >= 0 && y >= 0 && x <= blankCount && y <= dim2)) {
+	if ((x == -1 || y == -1) || !(x >= 0 && y >= 0 && ((unsigned int) x) <= blankCount && ((unsigned int) y) <= dim2)) {
 		printf(errMsgNotInRange, blankCount);
 	} else if (!isEmpty(bundle.puzzle)) {
 		printf("%s\n", errMsgNonEmptyBoard);
