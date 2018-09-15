@@ -453,14 +453,16 @@ static ParserFeedback autofillOp(LinkedList* args) {
 	dim = bundle.puzzle->n * bundle.puzzle->m;
 	for (i = 0; i < dim; i++) {
 		for (j = 0; j < dim; j++) {
-			v = isSingleLegalValue(bundle.puzzle, i, j);
-			if (v) {
-				c++;
-				printf(infoMsgCellSet, j + 1, i + 1, v);
+			if (!getBoardValue(bundle.puzzle, i, j)) {
+				v = isSingleLegalValue(bundle.puzzle, i, j);
+				if (v) {
+					c++;
+					printf(infoMsgCellSet, j + 1, i + 1, v);
 
-				appendElemToList(action,
-					createListElem(createMove(
-						i, j, v - getBoardValue(bundle.puzzle, i, j))));
+					appendElemToList(action,
+						createListElem(createMove(
+							i, j, v - getBoardValue(bundle.puzzle, i, j))));
+				}
 			}
 		}
 	}

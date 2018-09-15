@@ -81,19 +81,20 @@ Bool generatePuzzle(Puzzle *p, unsigned int x, unsigned int y);
 unsigned int calcSolutionsNum(Puzzle *p);
 
 /**
-  *This method checks if there's only a single value that would be legal to assign to cell (x,y) and returns it
- *
-  *Parameters:
-  *Puzzle *p
-  *unsigned int x - The row
-  *unsigned int y - The column
+  * This method checks if there's only a single value that would be legal to assign to cell (x,y) and returns it.
   *
-  *Preconditions:
-  *p != 0
-  *x,y < n*m
+  * Parameters:
+  * Puzzle *p
+  * unsigned int x - The row
+  * unsigned int y - The column
   *
-  *Returns:
-  *The single legal value. if there's none, or there's more than one value, then it returns 0
+  * Preconditions:
+  * p != 0
+  * x,y < n*m
+  * !getBoardValue(p, x, y)
+  *
+  * Returns:
+  * The single legal value. if there's none, or there's more than one value, then it returns 0
   */
 unsigned int isSingleLegalValue(Puzzle *p, unsigned int x, unsigned int y);
 
