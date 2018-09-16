@@ -316,6 +316,7 @@ Bool generatePuzzle(Puzzle *p, unsigned int x, unsigned int y) {
 
 	for (t = 0; t < generateMaxTrials; t++) {
 		if (!fillRndVals(p, x) || !ILPSolver(p)) {
+			clearBoard(p);
 			continue;
 		} else {
 			clearBut(p, y);
@@ -323,6 +324,7 @@ Bool generatePuzzle(Puzzle *p, unsigned int x, unsigned int y) {
 		}
 	}
 
+	clearBoard(p);
 	return FALSE;
 }
 
